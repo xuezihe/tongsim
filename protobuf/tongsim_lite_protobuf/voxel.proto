@@ -6,6 +6,7 @@ import "tongsim_lite_protobuf/object.proto";
 
 service VoxelService {
   rpc QueryVoxel(QueryVoxelRequest) returns (Voxel);
+  rpc QueryAgentVoxel(QueryAgentVoxelRequest) returns (QueryAgentVoxelResponse);
 }
 
 message QueryVoxelRequest{
@@ -19,4 +20,18 @@ message QueryVoxelRequest{
 
 message Voxel{
   bytes voxel_buffer = 1;
+}
+
+message QueryAgentVoxelRequest{
+  tongsim_lite.object.ObjectId agent_id = 1;
+  optional int32 voxel_num_x = 2;
+  optional int32 voxel_num_y = 3;
+  optional int32 voxel_num_z = 4;
+  optional tongsim_lite.common.Vector3f extent = 5;
+}
+
+message QueryAgentVoxelResponse{
+  Voxel voxel = 1;
+  tongsim_lite.common.Transform agent_transform = 2;
+  double timestamp = 3;
 }
