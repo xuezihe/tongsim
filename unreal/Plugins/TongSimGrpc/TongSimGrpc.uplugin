@@ -28,6 +28,11 @@
 			"Name": "TongSimProto",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "TongSimVoxelPerception",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
 		}
 	],
 	"IsExperimentalVersion": false,

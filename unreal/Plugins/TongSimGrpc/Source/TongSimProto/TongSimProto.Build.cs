@@ -54,6 +54,10 @@ public class TongSimProto : ModuleRules
 
 		string genPath = Path.Combine(ModuleDirectory, "ThirdParty", "ProtoGen");
 		Directory.CreateDirectory(genPath);
+		if (!PublicIncludePaths.Contains(genPath))
+		{
+			PublicIncludePaths.Add(genPath);
+		}
 		if (!PrivateIncludePaths.Contains(genPath))
 		{
 			PrivateIncludePaths.Add(genPath);
@@ -104,7 +108,7 @@ public class TongSimProto : ModuleRules
 		{
 			string relativeProto = Path.GetRelativePath(protoPath, protoFile);
 			string args = $"--proto_path=\"{protoPath}\" " +
-					  $"--cpp_out=\"{genPath}\" " +
+					  $"--cpp_out=dllexport_decl=TONGSIMPROTO_API:\"{genPath}\" " +
 					  $"--grpc_cpp_out=\"{genPath}\" " +
 					  $"\"{protoFile}\"";
 
